@@ -1,0 +1,37 @@
+package prog;
+
+import commands.*;
+import java.io.*;
+
+public class Main {
+	public static void main(String[] args) {
+		String input = new String();
+		String command = new String();
+		String argument = new String();
+		
+		InputStreamReader  isr = new InputStreamReader(System.in);	
+		BufferedReader br = new BufferedReader(isr);
+	      try {
+	         System.out.println("Enter a command line:");
+	         input = br.readLine();
+	         System.out.println("The Result is: " + input);
+	      } catch (IOException ioe) {
+	         System.out.println(ioe);
+	      }
+		
+	    command= input.split(" ",2)[0];System.out.println("The Result is: " + command);
+	    try{
+	    	argument = input.split(" ",2)[1];System.out.println("The Result is: " );
+	    }catch(Exception e) {
+	    	argument = "";
+	    }
+	    
+		switch(command) {
+		case "ls": Ls input1 = new Ls(command,argument); break;
+		case "cd": Cd input2 = new Cd(command,argument); break;
+		case "mkdir": Mkdir input3 = new Mkdir(command,argument); break;
+		case "pwd": Pwd input4 = new Pwd(command, argument); break;
+		default: System.out.println("This command line does not exist");
+		}
+	}
+}
